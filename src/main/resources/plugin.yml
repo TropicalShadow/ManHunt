@@ -1,0 +1,15 @@
+name: FuckingWhatever
+version: @version@
+main: com.bexwing.fuckingwhatever.FuckingWhatever
+api-version: 1.16
+authors: [ TropicalShadow ]
+description: Bexwing - hunter plugin
+commands:
+  addhunter:
+    description: "Adds player to the hunter team"
+  removehunter:
+    description: "Removes player from the hunter team"
+  listhunters:
+    description: "List all hunters"
+  togglegamestate:
+    description: "Toggle playing or not"
