@@ -1,6 +1,6 @@
 package com.bexwing.fuckingwhatever.NMS;
 
-import com.bexwing.fuckingwhatever.FuckingWhatever;
+import com.bexwing.fuckingwhatever.ManHunt;
 import com.bexwing.fuckingwhatever.GameManager;
 import com.bexwing.fuckingwhatever.utils.Logging;
 import com.bexwing.fuckingwhatever.utils.StringUtils;
@@ -38,7 +38,7 @@ public class HotbarTitle extends Reflection{
     }
 
     public void startTitle(){
-        titleTask = Bukkit.getScheduler().runTaskTimerAsynchronously(FuckingWhatever.getPlugin(),()->{
+        titleTask = Bukkit.getScheduler().runTaskTimerAsynchronously(ManHunt.getPlugin(),()->{
             GameManager.getGameManager().getHunters().keySet().forEach((hunter)->{
                 String str = StringUtils.colorise(PlaceholderAPI.setPlaceholders(hunter,"&b%hunter_hunting%"));
                 sendActionMessage(hunter,str);

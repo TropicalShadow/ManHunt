@@ -1,6 +1,7 @@
 package com.bexwing.fuckingwhatever;
 
 import com.bexwing.fuckingwhatever.NMS.HotbarTitle;
+import com.bexwing.fuckingwhatever.NMS.Title;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
@@ -49,6 +49,9 @@ public class GameManager {
         hotbarTitle = new HotbarTitle();
     }
 
+    public HotbarTitle getHotbarTitle(){
+        return this.hotbarTitle;
+    }
 
 
     public boolean startGame(){
@@ -64,6 +67,15 @@ public class GameManager {
     public boolean endGame(){
         if(gameState.equals(GameState.PROGRESS)){
             gameState = GameState.END;
+            stopTracking();
+            hotbarTitle.stopTitle();
+            return true;
+        }
+        return false;
+    }
+    public boolean resetGame(){
+        if(gameState.equals(GameState.END)){
+            gameState = GameState.PENDING;
             stopTracking();
             hotbarTitle.stopTitle();
             return true;
@@ -88,7 +100,7 @@ public class GameManager {
     }
 
     public void startTracking(){
-        trackingTask = Bukkit.getScheduler().runTaskTimer(FuckingWhatever.getPlugin(),()->{
+        trackingTask = Bukkit.getScheduler().runTaskTimer(ManHunt.getPlugin(),()->{
             ItemStack compass = trackingCompassItemStack();
             hunters.forEach((hunter,pray) -> {
                 if(pray == null){

@@ -7,11 +7,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.Marker;
 
-public final class FuckingWhatever extends JavaPlugin {
+public final class ManHunt extends JavaPlugin {
 
-    private static FuckingWhatever INSTANCE;
     private static GameManager gameManager = null;
+    private static ManHunt INSTANCE;
+
     private CommandSimper commandSimper;
 
 
@@ -26,7 +28,7 @@ public final class FuckingWhatever extends JavaPlugin {
             new PapiExpansion().register();
         commandSimper = new CommandSimper();
         addEventListener(new AntiBlockBreaking(),new PrayManager());
-        registerCommands("addhunter","removehunter","listhunters","togglegamestate");
+        registerCommands("addhunter","removehunter","listhunters","togglegamestate","start");
     }
 
     @Override
@@ -50,7 +52,7 @@ public final class FuckingWhatever extends JavaPlugin {
         }
     }
 
-    public static FuckingWhatever getPlugin() {
+    public static ManHunt getPlugin() {
         return INSTANCE;
     }
 }

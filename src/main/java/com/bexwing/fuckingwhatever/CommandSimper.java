@@ -1,7 +1,10 @@
 package com.bexwing.fuckingwhatever;
 
+import com.bexwing.fuckingwhatever.NMS.Title;
 import com.bexwing.fuckingwhatever.utils.StringUtils;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -64,11 +67,20 @@ public class CommandSimper implements TabExecutor {
             switch(currentState){
                 case PENDING:finalState= GameManager.GameState.PROGRESS;GameManager.getGameManager().startGame();break;
                 case PROGRESS:finalState= GameManager.GameState.END;GameManager.getGameManager().endGame();break;
-                case END: finalState = GameManager.GameState.PENDING;break;
+                case END: finalState = GameManager.GameState.PENDING;GameManager.getGameManager().resetGame();break;
                 default: finalState = GameManager.GameState.PENDING;GameManager.getGameManager().endGame();break;
             }
             StringUtils.coloriseAndSend("&bGameState has been set to "+finalState.name(),sender);
             return true;
+        }else if(cmd.equalsIgnoreCase("start")){
+            if(!GameManager.getGameManager().getGameState().equals(GameManager.GameState.PENDING)){
+                sender.sendMessage(Component.text(ChatColor.RED+"Gamestate is not pending, current state is"+GameManager.getGameManager().getGameState().name()));
+
+            }else{
+                new Title().startCountDown();
+            }
+            return  true;
+
         }
         return false;
     }

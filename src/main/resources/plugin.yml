@@ -1,6 +1,6 @@
-name: FuckingWhatever
+name: ManHunt
 version: @version@
-main: com.bexwing.fuckingwhatever.FuckingWhatever
+main: com.bexwing.fuckingwhatever.ManHunt
 api-version: 1.16
 authors: [ TropicalShadow ]
 description: Bexwing - hunter plugin
@@ -13,3 +13,5 @@ commands:
     description: "List all hunters"
   togglegamestate:
     description: "Toggle playing or not"
+  start:
+    description: "start the game"
