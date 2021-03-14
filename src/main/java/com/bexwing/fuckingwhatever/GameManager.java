@@ -4,8 +4,12 @@ import com.bexwing.fuckingwhatever.NMS.HotbarTitle;
 import com.bexwing.fuckingwhatever.NMS.Title;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
@@ -86,6 +90,11 @@ public class GameManager {
         hunters.put(player,null);
         player.getInventory().removeItem(trackingCompassItemStack());
         player.getInventory().addItem(trackingCompassItemStack());
+        player.sendMessage(Component.text(ChatColor.GOLD+"You have been added to the hunter group."));
+        Location loc = new Location(Bukkit.getWorld("world"),-103,118,42);
+        if(loc.getBlock().getType().equals(Material.BARRIER))
+            player.teleportAsync(loc.add(0.5,2,0.5), PlayerTeleportEvent.TeleportCause.PLUGIN);
+
     }
     public void removeHunter(Player player){
         hunters.remove(player);

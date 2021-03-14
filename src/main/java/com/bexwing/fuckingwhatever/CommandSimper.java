@@ -20,7 +20,7 @@ public class CommandSimper implements TabExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         String cmd = command.getName();
         boolean isPlayer = (sender instanceof Player);
-        if(cmd.equalsIgnoreCase("addhunter")){
+        if(cmd.equalsIgnoreCase("addhunter")&& sender.hasPermission("group.developer")){
             if(args.length <=0){
                 StringUtils.coloriseAndSend("&b/addhunter &4&l>>&3NAME&4&l<<",sender);
                 return true;
@@ -34,7 +34,7 @@ public class CommandSimper implements TabExecutor {
             GameManager.getGameManager().addHunter(newHunter);
             StringUtils.coloriseAndSend("&b"+username+" has been added to the hunters team!",sender);
             return true;
-        }else if(cmd.equalsIgnoreCase("removehunter")){
+        }else if(cmd.equalsIgnoreCase("removehunter")&& sender.hasPermission("group.developer")){
             if(args.length <=0){
                 StringUtils.coloriseAndSend("&b/removehunter &4&l>>&3NAME&4&l<<",sender);
                 return true;
@@ -51,7 +51,7 @@ public class CommandSimper implements TabExecutor {
             }
             GameManager.getGameManager().removeHunter(newHunter);
             StringUtils.coloriseAndSend("&b"+username+" has been removed from the hunters team.",sender);
-        }else if(cmd.equalsIgnoreCase("listhunters")){
+        }else if(cmd.equalsIgnoreCase("listhunters")&& sender.hasPermission("group.developer")){
             StringUtils.coloriseAndSend("&b----------------------------------------",sender);
             if(GameManager.getGameManager().getHunters().size()<=0){
                 StringUtils.coloriseAndSend("&bThere are currently no hunters",sender);
@@ -61,7 +61,7 @@ public class CommandSimper implements TabExecutor {
             });
             StringUtils.coloriseAndSend("&b----------------------------------------",sender);
             return true;
-        }else if(cmd.equalsIgnoreCase("togglegamestate")){
+        }else if(cmd.equalsIgnoreCase("togglegamestate")&& sender.hasPermission("group.developer")){
             GameManager.GameState finalState;
             GameManager.GameState currentState = GameManager.getGameManager().getGameState();
             switch(currentState){
@@ -72,7 +72,7 @@ public class CommandSimper implements TabExecutor {
             }
             StringUtils.coloriseAndSend("&bGameState has been set to "+finalState.name(),sender);
             return true;
-        }else if(cmd.equalsIgnoreCase("start")){
+        }else if(cmd.equalsIgnoreCase("start") && sender.hasPermission("group.developer")){
             if(!GameManager.getGameManager().getGameState().equals(GameManager.GameState.PENDING)){
                 sender.sendMessage(Component.text(ChatColor.RED+"Gamestate is not pending, current state is"+GameManager.getGameManager().getGameState().name()));
 

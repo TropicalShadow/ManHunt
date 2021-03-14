@@ -3,10 +3,14 @@ package com.bexwing.fuckingwhatever.listeners;
 import com.bexwing.fuckingwhatever.GameManager;
 import net.kyori.adventure.text.Component;
 import org.bukkit.ChatColor;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -52,4 +56,10 @@ public class PrayManager implements Listener {
         event.getPlayer().sendMessage(Component.text("TODO - OPEN MENU"));
         
     }
+    @EventHandler
+    public void dragonDidDarnDie(EntityDeathEvent event){
+        if((event.getEntity() instanceof EnderDragon)&& GameManager.getGameManager().getGameState().equals(GameManager.GameState.PROGRESS))
+            GameManager.getGameManager().endGame();
+    }
+
 }
