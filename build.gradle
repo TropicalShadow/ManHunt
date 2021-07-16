@@ -4,18 +4,14 @@ plugins {
     id 'java'
 }
 
-group = 'com.bexwing'
+group = 'me.tropicalshadow'
 version = '1.1-SNAPSHOT'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
 
 repositories {
     mavenCentral()
-    maven {
-        name = 'papermc-repo'
-        url = 'https://papermc.io/repo/repository/maven-public/'
-    }
+        maven { url "https://papermc.io/repo/repository/maven-public/" }
+
     maven {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
@@ -27,9 +23,8 @@ repositories {
 
 
 dependencies {
-    compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
-    compileOnly 'me.clip:placeholderapi:2.10.9'
-
+    compileOnly "io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT"
+    compileOnly 'me.clip:placeholderapi:2.10.10'
 }
 
 processResources {
